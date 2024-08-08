@@ -2,15 +2,15 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductDetail from './components/ProductDetail.vue'
-import ProductPage from './components/ProductPage.vue'
+import Products from './components/Products.vue'
+import ProductPage from './pages/ProductPage.vue'
 
 /**
  * The route configuration for the application.
  * @type {Array<Object>}
  */
 const routes = [
-   { path: "/", component: ProductDetail },
+   { path: "/", component: Products },
    { path: "/product/:id", component: ProductPage}
 ];
 
