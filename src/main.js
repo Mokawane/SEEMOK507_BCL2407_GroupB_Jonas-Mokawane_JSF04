@@ -4,6 +4,7 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Products from './components/Products.vue'
 import ProductPage from './pages/ProductPage.vue'
+import Login from './components/Login.vue'
 
 /**
  * The route configuration for the application.
@@ -11,7 +12,8 @@ import ProductPage from './pages/ProductPage.vue'
  */
 const routes = [
    { path: "/", component: Products },
-   { path: "/product/:id", component: ProductPage}
+   { path: "/product/:id", component: ProductPage},
+   { path: "/login", component: Login}
 ];
 
 /**

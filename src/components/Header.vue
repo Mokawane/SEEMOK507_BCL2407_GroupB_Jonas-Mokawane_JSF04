@@ -1,5 +1,6 @@
 <script setup>
   import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
   /** 
  * A ref to manage the dropdown menu state.
@@ -14,6 +15,8 @@
   const toggleDropdown = () => {
     dropdownOpen.value = !dropdownOpen.value;
 };
+
+const router = useRouter();
 </script>
 
 <template>
@@ -85,7 +88,7 @@
                 Cart
             </li>
 
-            <li class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">
+            <li @click="() => router.push(`/login`)" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">
                 Login
             </li>
           </ul>
