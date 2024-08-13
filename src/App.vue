@@ -87,12 +87,14 @@ onMounted(() => {
  * @type {import('vue').ComputedRef<boolean>}
  */
 const isProductPage = computed(() => route.path.startsWith("/product/"));
+
+const isLogin = computed(() => route.path === "/login")
 </script>
 
 <template>
 
   <Header />
-  <div v-if="!isProductPage" class="grid lg:flex gap-y-4 gap-x-48 lg:items-start mt-3 mx-auto justify-center">
+  <div v-if="!isProductPage && !isLogin" class="grid lg:flex gap-y-4 gap-x-48 lg:items-start mt-3 mx-auto justify-center">
     <Filter :categories="categories" @categoryChange="handleCategoryChange" @searchChange="handleSearchChange" />
   <Sort @sortChange = "handleSortChange" />
 </div>
