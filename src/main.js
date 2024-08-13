@@ -5,6 +5,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Products from './components/Products.vue'
 import ProductPage from './pages/ProductPage.vue'
 import Login from './pages/Login.vue'
+import Wishlist from './pages/Wishlist.vue'
+import Cart from './pages/Cart.vue'
 
 /**
  * The route configuration for the application.
@@ -13,7 +15,9 @@ import Login from './pages/Login.vue'
 const routes = [
    { path: "/", component: Products },
    { path: "/product/:id", component: ProductPage},
-   { path: "/login", component: Login}
+   { path: "/login", component: Login},
+   { path: "/wishlist", component: Wishlist},
+   { path: "/cart", component: Cart}
 ];
 
 /**

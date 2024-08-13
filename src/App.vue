@@ -88,13 +88,19 @@ onMounted(() => {
  */
 const isProductPage = computed(() => route.path.startsWith("/product/"));
 
-const isLogin = computed(() => route.path === "/login")
+const isLogin = computed(() => route.path === "/login");
+
+const isWishlist = computed(() => route.path === "/wishlist");
+
+const isCart= computed(() => route.path === "/cart");
+
+const hideFilterAndSort = computed(() => !isProductPage.value && !isLogin.value && !isWishlist.value && !isCart.value);
 </script>
 
 <template>
 
   <Header />
-  <div v-if="!isProductPage && !isLogin" class="grid lg:flex gap-y-4 gap-x-48 lg:items-start mt-3 mx-auto justify-center">
+  <div v-if="hideFilterAndSort" class="grid lg:flex gap-y-4 gap-x-48 lg:items-start mt-3 mx-auto justify-center">
     <Filter :categories="categories" @categoryChange="handleCategoryChange" @searchChange="handleSearchChange" />
   <Sort @sortChange = "handleSortChange" />
 </div>
