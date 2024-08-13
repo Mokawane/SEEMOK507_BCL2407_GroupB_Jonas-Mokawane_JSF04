@@ -4,7 +4,7 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Products from './components/Products.vue'
 import ProductPage from './pages/ProductPage.vue'
-import Login from './components/Login.vue'
+import Login from './pages/Login.vue'
 
 /**
  * The route configuration for the application.
