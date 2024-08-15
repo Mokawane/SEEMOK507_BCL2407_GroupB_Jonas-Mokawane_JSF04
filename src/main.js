@@ -17,8 +17,8 @@ const routes = [
    { path: "/", component: Products },
    { path: "/product/:id", component: ProductPage},
    { path: "/login", component: Login},
-   { path: "/wishlist", component: Wishlist},
-   { path: "/cart", component: Cart}
+   { path: "/wishlist", component: Wishlist, meta: { requiresAuth: true } },
+   { path: "/cart", component: Cart, meta: { requiresAuth: true } }
 ];
 
 /**
@@ -31,6 +31,18 @@ const router = createRouter({
     routes,
   }); 
 
+  router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (!store.getters.isAuthenticated) {
+        next('/login');
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+  });
+  
 /**
  * Creates a Vue application instance and mounts it to the DOM.
  * @function
