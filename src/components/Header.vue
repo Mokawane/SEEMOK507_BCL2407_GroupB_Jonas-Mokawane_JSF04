@@ -1,6 +1,7 @@
 <script setup>
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
 
   /** 
  * A ref to manage the dropdown menu state.
@@ -17,6 +18,17 @@
 };
 
 const router = useRouter();
+const store = useStore();
+const isAuthenticated = computed(() => store.getters.isAuthenticated);
+
+const handleLoginLogout = () => {
+  if (isAuthenticated.value) {
+    store.dispatch('logout');
+    router.push('/login');
+  } else {
+    router.push('/login');
+  }
+};
 </script>
 
 <template>
@@ -90,8 +102,8 @@ const router = useRouter();
                 Cart
             </li>
 
-            <li @click="() => router.push(`/login`)" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">
-                Login
+            <li @click="handleLoginLogout" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">
+              {{ isAuthenticated ? 'Logout' : 'Login' }}
             </li>
           </ul>
         </div>

@@ -7,6 +7,7 @@ import ProductPage from './pages/ProductPage.vue'
 import Login from './pages/Login.vue'
 import Wishlist from './pages/Wishlist.vue'
 import Cart from './pages/Cart.vue'
+import store from './store'
 
 /**
  * The route configuration for the application.
@@ -36,4 +37,5 @@ const router = createRouter({
  */
 const app = createApp(App);
 app.use(router);
+app.use(store);
 app.mount('#app');
