@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 /**
  * Props passed to the component
@@ -31,9 +32,8 @@ const route = useRoute();
 
 /** @type {Router} router - The Vue router instance */
 const router = useRouter();
-// const sortOption = ref('default');
-// const selectedCategory = ref('All Categories');
-// const searchQuery = ref('');
+
+const store = useStore();
 
 
 /**
@@ -79,6 +79,10 @@ const getProducts = async () => {
     } else {
       sortedProducts.value = filtered;
     }
+  };
+
+  const addToWishlist = (product) => {
+    store.dispatch('addToWishlist', product);
   };
   
 
@@ -152,7 +156,7 @@ const getProducts = async () => {
                   </span>
                 </div>
                 <div class="justify-end space-x-2">
-                  <button>
+                  <button @click="addToWishlist(product)">
                     <svg class="me-1.5 h-5 w-5 hover:fill-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" transform="scale(1.6)">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
                     </svg>
