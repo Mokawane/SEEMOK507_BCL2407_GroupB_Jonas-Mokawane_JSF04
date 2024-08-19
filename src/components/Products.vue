@@ -94,6 +94,9 @@ const getProducts = async () => {
     getProducts();
   });
   
+  const addToCart = (product) => {
+  store.dispatch('addToCart', product);
+  };
 
   /**
  * Watchers to re-filter and sort products when the props change
@@ -161,7 +164,7 @@ const getProducts = async () => {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
                     </svg>
                   </button>
-                  <button class="inline-flex justify-center whitespace-nowrap rounded-lg bg-cyan-700 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-900 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors">
+                  <button @click="addToCart(product)" class="inline-flex justify-center whitespace-nowrap rounded-lg bg-cyan-700 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-900 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors">
                     Add To Cart
                   </button>
                 </div>
