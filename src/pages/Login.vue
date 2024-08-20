@@ -2,11 +2,13 @@
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
+  import { jwtDecode } from 'jwt-decode';
 
-  const email = ref('');
+  const username = ref('');
   const password = ref('');
   const step = ref(1);
   const errorMessage = ref('');
+  const loadingMessage = ref('');
   const passwordVisible = ref(false);
   const router = useRouter();
   const store = useStore();
@@ -16,33 +18,57 @@
       try {
         const response = await fetch('https://fakestoreapi.com/users');
         const users = await response.json();
-        const user = users.find(user => user.email === email.value);
+        const user = users.find(user => user.username === username.value);
 
         if (user) {
           step.value = 2;
           errorMessage.value = '';
         } else {
-          errorMessage.value = 'Email not found. Please try again.';
+          errorMessage.value = 'Username not found. Please try again.';
         }
       } catch (error) {
         errorMessage.value = 'An error occurred. Please try again later.';
       }
     } else if (step.value === 2) {
+      if (!username.value || !password.value) {
+        errorMessage.value = 'Username and password cannot be empty.';
+        return;
+      }
+  
+      loadingMessage.value = 'Authenticating...';
+  
       try {
-        const response = await fetch('https://fakestoreapi.com/users');
-        const users = await response.json();
-        const user = users.find(user => user.email === email.value && user.password === password.value);
-
-        if (user) {
-          localStorage.setItem('token', 'your_jwt_token');
-          store.dispatch('login');
+        const response = await fetch('https://fakestoreapi.com/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: username.value,
+            password: password.value,
+          }),
+        });
+  
+        const result = await response.json();
+  
+        if (response.ok) {
+          localStorage.setItem('token', result.token);
+          const decoded = jwtDecode(result.token);
+          console.log(decoded);
+  
+          store.dispatch('login', decoded);
+  
           errorMessage.value = '';
-          router.push('/');
+          loadingMessage.value = '';
+          const redirectPath = router.currentRoute.value.query.redirect || '/';
+          router.push(redirectPath);
         } else {
-          errorMessage.value = 'Incorrect password. Please try again.';
+          errorMessage.value = 'Login failed. Please check your credentials and try again.';
+          loadingMessage.value = '';
         }
       } catch (error) {
         errorMessage.value = 'An error occurred. Please try again later.';
+        loadingMessage.value = '';
       }
     }
   };
@@ -51,6 +77,11 @@
   passwordVisible.value = !passwordVisible.value;
 };
 
+const handleLogout = () => {
+    localStorage.removeItem('token');
+    store.dispatch('logout');
+    router.push('/login');
+  };
 </script>
 
 <template>
