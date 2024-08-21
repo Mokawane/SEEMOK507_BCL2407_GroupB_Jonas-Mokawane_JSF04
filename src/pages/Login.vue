@@ -94,9 +94,9 @@ const handleLogout = () => {
         <form @submit.prevent="handleSubmit">
           <div class="mb-4" v-if="step === 1">
             <input 
-              type="email" 
-              v-model="email" 
-              placeholder="Email*" 
+              type="text" 
+              v-model="username" 
+              placeholder="Username*" 
               class="w-full p-3 border border-gray-300 rounded-lg"
               required 
             />
