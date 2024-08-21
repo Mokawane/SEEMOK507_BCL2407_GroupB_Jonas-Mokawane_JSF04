@@ -94,7 +94,9 @@ const isWishlist = computed(() => route.path === "/wishlist");
 
 const isCart= computed(() => route.path === "/cart");
 
-const hideFilterAndSort = computed(() => !isProductPage.value && !isLogin.value && !isWishlist.value && !isCart.value);
+const isComparison= computed(() => route.path === "/comparison");
+
+const hideFilterAndSort = computed(() => !isProductPage.value && !isLogin.value && !isWishlist.value && !isCart.value && !isComparison.value);
 </script>
 
 <template>
