@@ -29,6 +29,8 @@ const handleLoginLogout = () => {
     router.push('/login');
   }
 };
+
+const cartItemCount = computed(() => store.getters.cartItemCount);
 </script>
 
 <template>
@@ -101,7 +103,7 @@ const handleLoginLogout = () => {
               <li @click="() => router.push(`/cart`)" class="hidden lg:block md:block relative">
                 <div class="t-0 absolute left-3 -top-4">
                   <p class="flex h-2 w-2 items-center  justify-center rounded-full bg-red-500 p-3 text-xs text-white">
-                    0
+                    {{ cartItemCount }}
                   </p>
                 </div>
                 <svg

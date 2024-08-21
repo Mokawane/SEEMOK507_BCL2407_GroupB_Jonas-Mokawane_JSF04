@@ -122,5 +122,6 @@ export default createStore({
     wishlist: (state) => state.wishlist,
     cart: (state) => state.cart,
     comparisonItems: (state) => state.comparisonItems,
+    cartItemCount: (state) => state.cart.reduce((total, item) => total + item.quantity, 0),
   },
 });
