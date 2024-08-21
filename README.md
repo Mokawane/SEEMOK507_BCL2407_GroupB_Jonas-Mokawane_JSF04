@@ -34,7 +34,7 @@ To set up and run the project locally, follow these steps:
 
 1. **Clone the Repository**:
    ```sh
-   git clone https://github.com/Mokawane/SEEMOK507_BCL2407_GroupB_Jonas-Mokawane_JSF03.git
+   git clone https://github.com/Mokawane/SEEMOK507_BCL2407_GroupB_Jonas-Mokawane_JSF04.git
    cd swiftcart
 
 2. **Install Dependencies**:
@@ -95,3 +95,7 @@ To set up and run the project locally, follow these steps:
     ```html
     <input v-model="searchQuery" @input="handleSearch" placeholder="Search products..." />
     ```
+
+
+### Link of my Swiftcart presentation
+https://drive.google.com/drive/folders/1S94HsEehZGQxNc9udKgYCYOA31kULFxp?usp=sharing
