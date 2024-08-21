@@ -31,6 +31,7 @@ const handleLoginLogout = () => {
 };
 
 const cartItemCount = computed(() => store.getters.cartItemCount);
+const comparisonItemCount = computed(() => store.getters.comparisonItemCount);
 </script>
 
 <template>
@@ -79,7 +80,7 @@ const cartItemCount = computed(() => store.getters.cartItemCount);
             <li @click="() => router.push(`/comparison`)" class="hidden lg:block md:block relative">
                 <div class="t-0 absolute left-3 -top-4">
                   <p class="flex h-2 w-2 items-center  justify-center rounded-full bg-red-500 p-3 text-xs text-white">
-                    0
+                    {{ comparisonItemCount }}
                   </p>
                 </div>
                 <svg  
