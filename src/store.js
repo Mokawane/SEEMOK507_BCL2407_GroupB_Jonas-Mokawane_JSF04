@@ -28,6 +28,10 @@ export default createStore({
       state.wishlist = state.wishlist.filter(item => item.id !== productId);
       localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
     },
+    CLEAR_WISHLIST(state) {
+      state.wishlist = [];
+      localStorage.removeItem('wishlist');
+    },
 
     ADD_TO_CART(state, product) {
       const exists = state.cart.find(item => item.id === product.id);
@@ -90,6 +94,9 @@ export default createStore({
     },
     removeFromWishlist({ commit }, productId) {
       commit('REMOVE_FROM_WISHLIST', productId);
+    },
+    clearWishlist({ commit }) {
+      commit('CLEAR_WISHLIST');
     },
     addToCart({ commit }, product) {
       commit('ADD_TO_CART', product);
