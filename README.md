@@ -99,3 +99,6 @@ To set up and run the project locally, follow these steps:
 
 ### Link of my Swiftcart presentation
 https://drive.google.com/drive/folders/1S94HsEehZGQxNc9udKgYCYOA31kULFxp?usp=sharing
+
+### Link to my site
+https://swiftcart-store.netlify.app/
