@@ -42,6 +42,10 @@ export default createStore({
       state.cart = state.cart.filter(item => item.id !== productId);
       localStorage.setItem('cart', JSON.stringify(state.cart));
     },
+    CLEAR_CART(state) {
+      state.cart = [];
+      localStorage.removeItem('cart');
+    },
     INCREASE_QUANTITY(state, itemId) {
       const item = state.cart.find(item => item.id === itemId);
       if (item) {
@@ -52,6 +56,7 @@ export default createStore({
       const item = state.cart.find(item => item.id === itemId);
       if (item && item.quantity > 1) {
         item.quantity--;
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     },
     
@@ -92,7 +97,9 @@ export default createStore({
     removeFromCart({ commit }, productId) {
       commit('REMOVE_FROM_CART', productId);
     },
-    
+    clearCart({ commit }) {
+      commit('CLEAR_CART');
+    },
     addToComparison({ commit }, product) {
       commit('ADD_TO_COMPARISON', product);
     },

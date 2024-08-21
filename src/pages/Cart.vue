@@ -19,6 +19,9 @@ export default {
     removeFromCart(item) {
       this.$store.commit('REMOVE_FROM_CART', item.id);
     },
+    clearCart() {
+      this.$store.commit('CLEAR_CART');
+    }
   },
 };
 </script>
@@ -28,6 +31,17 @@ export default {
     <div class="lg:col-span-8">
       <h1 class="text-4xl font-extrabold text-slate-600 mt-6">Your Cart,</h1>
       <div v-if="cartItems.length">
+        <button 
+          @click="clearCart" 
+          class="flex items-center mt-4 bg-red-500 text-white px-4 py-2 mx-4 my-4 rounded hover:bg-red-700">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px"
+              fill="none">
+              <path stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"
+                d="M14.25 7.5v12m-4.5-12v12M5.25 6v13.5c0 1.24 1.01 2.25 2.25 2.25h9c1.24 0 2.25-1.01 2.25-2.25V5.25m0 0h2.75m-2.75 0H21m-12-3h5.25c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5H3">
+              </path>
+            </svg>
+            All
+        </button>
         <div v-for="item in cartItems" :key="item.id" class="flex items-center justify-between mb-8 border-b pb-4">
           <img :src="item.image" alt="Product Image" class="w-24 h-24 object-contain rounded">
           <div class="flex-1 ml-4">
