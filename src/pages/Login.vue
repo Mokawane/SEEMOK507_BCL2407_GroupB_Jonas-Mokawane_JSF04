@@ -90,7 +90,7 @@ const handleLogout = () => {
             <img src="/src/assets/online-shop.png" alt="Flowbite-logo" class="h-20 mx-auto"/>
         </div>
       <div class="text-center max-w-sm w-full">
-        <h2 class="text-xl font-semibold mb-6 mt-6 text-slate-600">{{ step === 1 ? 'Enter your email to Log in.' : 'Enter your password.' }}</h2>
+        <h2 class="text-xl font-semibold mb-6 mt-6 text-slate-600">{{ step === 1 ? 'Enter your Username to Log in.' : 'Enter your password.' }}</h2>
         <form @submit.prevent="handleSubmit">
           <div class="mb-4" v-if="step === 1">
             <input 
