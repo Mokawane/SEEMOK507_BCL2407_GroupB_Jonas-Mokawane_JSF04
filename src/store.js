@@ -6,6 +6,7 @@ export default createStore({
       isAuthenticated: !!localStorage.getItem('token'),
       wishlist: JSON.parse(localStorage.getItem('wishlist')) || [],
       cart: JSON.parse(localStorage.getItem('cart')) || [],
+      comparisonItems: JSON.parse(localStorage.getItem('comparisonItems')) || [],
     };
   },
   mutations: {
@@ -37,7 +38,6 @@ export default createStore({
       }
       localStorage.setItem('cart', JSON.stringify(state.cart));
     },
-    
     REMOVE_FROM_CART(state, productId) {
       state.cart = state.cart.filter(item => item.id !== productId);
       localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -53,6 +53,24 @@ export default createStore({
       if (item && item.quantity > 1) {
         item.quantity--;
       }
+    },
+    
+    ADD_TO_COMPARISON(state, product) {
+      if (state.comparisonItems.length < 5) {
+        const exists = state.comparisonItems.find(item => item.id === product.id);
+        if (!exists) {
+          state.comparisonItems.push(product);
+          localStorage.setItem('comparisonItems', JSON.stringify(state.comparisonItems));
+        }
+      }
+    },
+    REMOVE_FROM_COMPARISON(state, productId) {
+      state.comparisonItems = state.comparisonItems.filter(item => item.id !== productId);
+      localStorage.setItem('comparisonItems', JSON.stringify(state.comparisonItems));
+    },
+    CLEAR_COMPARISON_LIST(state) {
+      state.comparisonItems = [];
+      localStorage.removeItem('comparisonItems');
     },
   },
   actions: {
@@ -74,10 +92,21 @@ export default createStore({
     removeFromCart({ commit }, productId) {
       commit('REMOVE_FROM_CART', productId);
     },
+    
+    addToComparison({ commit }, product) {
+      commit('ADD_TO_COMPARISON', product);
+    },
+    removeFromComparison({ commit }, productId) {
+      commit('REMOVE_FROM_COMPARISON', productId);
+    },
+    clearComparisonList({ commit }) {
+      commit('CLEAR_COMPARISON_LIST');
+    }
   },
   getters: {
     isAuthenticated: (state) => state.isAuthenticated,
     wishlist: (state) => state.wishlist,
     cart: (state) => state.cart,
+    comparisonItems: (state) => state.comparisonItems,
   },
 });

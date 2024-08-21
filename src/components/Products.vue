@@ -85,6 +85,9 @@ const getProducts = async () => {
     store.dispatch('addToWishlist', product);
   };
   
+  const addToComparison = (product) => {
+    store.dispatch('addToComparison', product);
+  };
 
   /**
  * Lifecycle hook called when the component is mounted
@@ -141,24 +144,25 @@ const getProducts = async () => {
                   </svg>
                   <span>{{ product.rating.rate }}</span>
                 </div>
-                <div class="mx-auto w-[90%] space-y-2">
+                <div class="inline-flex float- gap-10 items-center mb-2 mx-auto w-[90%]">
                 <h2 class="text-base line-clamp-2 font-extrabold text-slate-500 leading-snug">
                   R{{product.price}}
                 </h2>
-              </div>
-              <div class="mx-auto w-[90%] space-y-2">
-                <h2 class="text-base line-clamp-2 font-extrabold text-slate-500 leading-snug">
-                </h2>
-              </div>
-              <div class="flex mt-1 space-x-2">
-                <div class="justify-start flex-1">
-                  <span
-                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
+                <span
+                    class="inline-flex float-right items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
                   >
                     {{ product.category }}
                   </span>
+              </div>
+              <div class="flex mt-1 space-x-2">
+                <div class="justify-start flex-1">
                 </div>
-                <div class="justify-end space-x-2">
+                <div class="justify-center space-x-8">
+                  <button @click="addToComparison(product)">
+                    <svg  class="inline-flex float-left me-1.5 h-5 w-5 hover:fill-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24">
+                        <path d="m23.561,11.439c.586.585.586,1.536,0,2.121l-5.327,5.327c-1.508,1.508-3.959,1.508-5.467,0l-2.154-2.154c-.338-.337-.887-.337-1.225,0l-4.827,4.827,1.332,1.331c.409.409.119,1.108-.459,1.108H1.091c-.602,0-1.091-.488-1.091-1.091v-4.342c0-.578.699-.868,1.108-.459l1.332,1.332,4.827-4.827c1.507-1.508,3.96-1.508,5.467,0l2.154,2.154c.328.327.896.327,1.225,0l5.327-5.327c.586-.586,1.535-.586,2.121,0Zm-.651-11.439h-4.169c-.642,0-.964.776-.51,1.23l1.209,1.209-4.827,4.827c-.338.337-.887.337-1.225,0l-2.154-2.154c-1.507-1.508-3.96-1.508-5.467,0L.439,10.439c-.586.585-.586,1.536,0,2.121.293.293.677.439,1.061.439s.768-.146,1.061-.439l5.327-5.327c.327-.327.897-.327,1.225,0l2.154,2.154c1.507,1.508,3.959,1.508,5.467,0l4.827-4.827,1.209,1.209c.454.454,1.23.132,1.23-.51V1.091c0-.603-.488-1.091-1.091-1.091Z"/>
+                    </svg>
+                  </button>
                   <button @click="addToWishlist(product)">
                     <svg class="me-1.5 h-5 w-5 hover:fill-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" transform="scale(1.6)">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />

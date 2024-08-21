@@ -8,6 +8,7 @@ import Login from './pages/Login.vue'
 import Wishlist from './pages/Wishlist.vue'
 import Cart from './pages/Cart.vue'
 import store from './store'
+import Comparison from './pages/Comparison.vue'
 
 /**
  * The route configuration for the application.
@@ -18,7 +19,8 @@ const routes = [
    { path: "/product/:id", component: ProductPage},
    { path: "/login", component: Login},
    { path: "/wishlist", component: Wishlist, meta: { requiresAuth: true } },
-   { path: "/cart", component: Cart, meta: { requiresAuth: true } }
+   { path: "/cart", component: Cart, meta: { requiresAuth: true } },
+   { path: "/comparison", component: Comparison, meta: { requiresAuth: true } }
 ];
 
 /**
